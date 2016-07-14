@@ -1,0 +1,6 @@
+<?php
+Configure::write('Rabbit.server', [
+		'host'	=> 'localhost',
+		'port'	=> 5672
+	]
+);
