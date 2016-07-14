@@ -1,5 +1,5 @@
 {
-	"name": "pdedkov/rabbit",
+	"name": "pdedkov/cakephp-rabbit",
 	"description": "RabbitMQ cakephp plugin",
 	"type": "cakephp-plugin",
 	"license": "MIT",
