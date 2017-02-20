@@ -3,7 +3,6 @@ namespace Rabbit;
 
 use PhpAmqpLib\Message\AMQPMessage;
 use SplQueue;
-use String;
 
 class Producer extends Base {
 	protected static $_defaults = [
@@ -37,7 +36,7 @@ class Producer extends Base {
 	 */
 	protected $_runtime = [];
 
-	public function __construct($namespace = null , array $config = []) {
+	public function __construct($namespace = null, array $config = []) {
 		parent::__construct($namespace, $config);
 
 		// регистрируем callback-функции
@@ -61,7 +60,7 @@ class Producer extends Base {
 	 * @return Producer
 	 */
 	public function add($data = null, $correlation = null) {
-		$Message = $this->_message($data, ['reply_to' => $this->_cbQueue, 'correlation_id' => $correlation ?: String::uuid()]);
+		$Message = $this->_message($data, ['reply_to' => $this->_cbQueue, 'correlation_id' => $correlation ?: uniqid("", true)]);
 		$this->_collerations[$Message->get('correlation_id')] = time();
 		$this->_Messages->push($Message);
 
@@ -84,10 +83,14 @@ class Producer extends Base {
 		// обработка
 		while ($this->_Messages->count()) {
 			$message = $this->_Messages->pop();
+
 			$this->_Channel->basic_publish($message, '', $this->_queue());
+
 			// массив запущенных задач
 			$this->_runtime[$message->get('correlation_id')] = time();
+
 		}
+
 
 		// если есть обработчик ответов, то слушаем его
 		if ($this->_cbQueue && $wait) {

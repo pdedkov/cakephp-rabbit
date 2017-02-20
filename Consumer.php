@@ -9,6 +9,13 @@ class Consumer extends Base {
 	 */
 	protected $_body = null;
 
+
+	protected static $_defaults = [
+		'cycles' => 100
+	];
+
+	protected $_cycle = 0;
+
 	/**
 	 * Запуск в работу
 	 */
@@ -33,8 +40,9 @@ class Consumer extends Base {
 
 
 		// слушаем чё там как
-		while(count($this->_Channel->callbacks)) {
+		while(count($this->_Channel->callbacks) && $this->_cycle < $this->_config['cycles']) {
 			$this->_Channel->wait();
+			$this->_cycle++;
 		}
 	}
 

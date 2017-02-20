@@ -29,7 +29,7 @@ class ConsumerShell extends AppShell {
 		}
 
 		if (!class_exists($class)) {
-			throw new \AppException('Недоступный подписчик');
+			throw new \AppException("Недоступный подписчик '{$class}'");
 		}
 
 

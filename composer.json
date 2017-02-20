@@ -1,24 +1,26 @@
 {
-	"name": "pdedkov/cakephp-rabbit",
-	"description": "RabbitMQ cakephp plugin",
-	"type": "cakephp-plugin",
-	"license": "MIT",
-	"version": "0.1",
-	"authors": [
-		{
-			"name": "Pavel E. Dedkov",
-			"email": "pavel.dedkov@gmail.com"
-		}
-	],
-	"minimum-stability": "stable",
+    "name": "pdedkov/rabbit",
+    "description": "RabbitMQ cakephp plugin",
+  	"type": "cakephp-plugin",
+    "license": "MIT",
+  	"version": "0.1",
+    "authors": [
+        {
+            "name": "Pavel E. Dedkov",
+            "email": "pavel.dedkov@gmail.com"
+        }
+    ],
 	"require": {
-		"php": ">= 5.4.0",
-		"composer/installers": "~1.0",
-		"pdedkov/config": "dev-stable",
-		"php-amqplib/php-amqplib": "^2.6",
-		"pdedkov/enum": "dev-stable"
+	  "php": ">= 5.4.0",
+	  "composer/installers": "~1.0",
+	  "pdedkov/config": "dev-stable",
+	  "php-amqplib/php-amqplib": "^2.6",
+	  "pdedkov/enum": "dev-master"
 	},
-	"extra": {
-		"installer-name": "Rabbit"
-	}	
+	"repositories":[
+	  {
+		"type": "vcs",
+		"url": "https://hg.mirafox.ru/PHP-Libs/Config"
+	  }
+	]
 }
